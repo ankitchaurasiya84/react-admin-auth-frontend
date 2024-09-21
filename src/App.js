@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Admin, Resource } from 'react-admin';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { authProvider } from './authProvider';
+import { dataProvider } from './dataProvider';
+import UserList from './UserList';
+import Signup from './Signup';  // Import the Signup component
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+console.log(dataProvider);
+const App = () => (
+    
+    <BrowserRouter>
+        <Routes>
+            <Route path="*" element={
+                <Admin authProvider={authProvider} dataProvider={dataProvider}>
+                    <Resource name="userssdsd" list={UserList} />
+                </Admin>
+            } />
+        </Routes>
+    </BrowserRouter>
+);
 
 export default App;
+
